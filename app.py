@@ -13,8 +13,8 @@ def skill_tokenizer(text):
 sys.modules['__main__'].skill_tokenizer = skill_tokenizer
 
 # --- 3. Load vectorizer and clustering model ---
-vectorizer = joblib.load("/home/user/Desktop/Notifications/vectorizer.joblib")
-kmeans = joblib.load("/home/user/Desktop/Notifications/kmeans_model.joblib")
+vectorizer = joblib.load("vectorizer.joblib")
+kmeans = joblib.load("kmeans_model.joblib")
 
 # --- 4. Streamlit page config ---
 st.set_page_config(page_title="Job Alert App", layout="wide")
