@@ -1,4 +1,5 @@
-streamlit==1.35.0
-pandas==2.2.2
-joblib==1.4.0
-scikit-learn==1.4.2
+streamlit
+pandas
+scikit-learn
+beautifulsoup4
+requests
