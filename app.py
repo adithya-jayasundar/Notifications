@@ -36,6 +36,8 @@ def load_data():
     return df
 
 df_jobs = load_data()
+if 'Date' not in df_jobs.columns:
+    df_jobs['Date'] = ''
 
 # --- 7. Scrape new jobs and update dataset ---
 if trigger_scrape:
