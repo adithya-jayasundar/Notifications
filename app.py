@@ -36,7 +36,7 @@ def load_data():
         df = pd.DataFrame(columns=["Title", "Company", "Location", "Date", "Skills", "Cluster"])
     return df
 
-df_jobs = load_data()a
+df_jobs = load_data()
 
 # --- 7. Scrape new jobs and update dataset ---
 if trigger_scrape:
