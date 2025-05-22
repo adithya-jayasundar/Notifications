@@ -14,7 +14,7 @@ def skill_tokenizer(text):
     # Custom tokenizer to split skills by comma and strip spaces
     return [skill.strip() for skill in text.split(',')]
 
-def preprocess_and_cluster_jobs(csv_path="Job-notifications/scraped_jobs.csv", n_clusters=5):
+def preprocess_and_cluster_jobs(csv_path="scraped_jobs.csv", n_clusters=5):
     # Step 1: Load the scraped data from CSV
     df_jobs = pd.read_csv(csv_path)
     print(f"Loaded {len(df_jobs)} jobs")
@@ -51,5 +51,5 @@ def preprocess_and_cluster_jobs(csv_path="Job-notifications/scraped_jobs.csv", n
     return df_jobs
 
 if __name__ == "__main__":
-    clustered_jobs_df = preprocess_and_cluster_jobs(csv_path="Job-notifications/scraped_jobs.csv", n_clusters=5)
+    clustered_jobs_df = preprocess_and_cluster_jobs(csv_path="scraped_jobs.csv", n_clusters=5)
     print(clustered_jobs_df.head())
