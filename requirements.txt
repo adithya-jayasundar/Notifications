@@ -4,3 +4,4 @@ joblib
 requests
 beautifulsoup4
 sys
+sklearn
