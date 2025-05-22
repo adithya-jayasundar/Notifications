@@ -17,7 +17,7 @@ try:
     kmeans = joblib.load("kmeans_model.joblib")
 except Exception as e:
     st.error(f"❌ Error loading model/vectorizer: {e}")
-    st.stop()
+    st.stop() #https://hj9cbiz3dk7pqrq7mkirwo.streamlit.app
 
 # --- 3. Streamlit UI config ---
 st.set_page_config(page_title="Job Alert App", layout="wide")
