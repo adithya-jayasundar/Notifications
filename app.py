@@ -31,7 +31,6 @@ def load_data():
     try:
         df = pd.read_csv("/home/user/Desktop/Notifications/clustered_jobs.csv")
     except FileNotFoundError:
-        # Create empty DataFrame with expected columns if CSV doesn't exist yet
         df = pd.DataFrame(columns=["Title", "Company", "Location", "Date", "Skills", "Cluster"])
     return df
 
@@ -42,7 +41,11 @@ if 'Date' not in df_jobs.columns:
 # --- 7. Scrape new jobs and update dataset ---
 if trigger_scrape:
     st.info("Scraping latest jobs from Karkidi...")
-    scraped = scrape_karkidi_jobs("data science", pages=1)  # Adjust parameters if needed
+    try:
+        scraped = scrape_karkidi_jobs("data science", pages=1)  # Adjust parameters if needed
+    except Exception as e:
+        st.error(f"Scraping failed: {e}")
+        scraped = pd.DataFrame()
 
     if scraped.empty:
         st.warning("No new jobs found.")
@@ -74,11 +77,10 @@ if user_skills:
 
     for _, job in matched.iterrows():
         with st.expander(f"🔹 {job['Title']} at {job['Company']} ({job['Location']})"):
-            # Safely get the Date field or show 'N/A' if missing
-            date_posted = job.get('Date', 'N/A') if hasattr(job, 'get') else job['Date'] if 'Date' in job else 'N/A'
+            date_posted = job['Date'] if pd.notna(job['Date']) and job['Date'] != '' else 'N/A'
             st.write(f"📅 Posted on: {date_posted}")
             st.write(f"🛠 Skills: `{job['Skills']}`")
-            st.write(f"🔗 [View Posting](https://www.karkidi.com/)")  # Update if actual URLs available
+            st.write(f"🔗 [View Posting](https://www.karkidi.com/)")  # Replace with actual job URL if available
 else:
     st.info("Enter your skills to get personalized job recommendations.")
 
