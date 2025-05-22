@@ -4,4 +4,4 @@ joblib
 requests
 beautifulsoup4
 sys
-sklearn
+cikit-learn
